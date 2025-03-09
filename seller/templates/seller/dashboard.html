@@ -1,0 +1,12 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+{% block CustomCssLink %}
+<link rel="stylesheet" href="{% static 'account/css/register.css' %}">
+{% endblock CustomCssLink %}
+
+{% block title %}Seller Dashboard{% endblock title %}
+
+{% block content %}
+    <h1 class="text-white">Seller dashboard</h1>
+{% endblock content %}

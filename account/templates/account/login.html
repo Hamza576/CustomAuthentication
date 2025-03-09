@@ -1,0 +1,42 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+{% block CustomCssLink %}
+<link rel="stylesheet" href="{% static 'account/css/register.css' %}">
+{% endblock CustomCssLink %}
+
+{% block title %}Login Page{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2>Sign In</h2>
+        <form action="{% url "login" %}" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="email" name="email" id="email" required value="{{form.email.value|default:""}}">
+                <label for="email">Email</label>
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <span class="input-error">{{error|striptags}}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-eye-slash togglePassword"></i>
+                <input type="password" name="password" id="password" required value="{{form.password.value|default:""}}">
+                <label for="pass">Password</label>
+                {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <span class="input-error">{{error|striptags}}</span>
+                    {% endfor %}
+                {% endif %}
+                <small class="ms-auto"><a href="{% url "password_reset" %}">Forgot Password?</a></small>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn signUpBtn">Sign In</button>
+                <p class="horizontalBar">or</p>
+                <a href="" class="btn googleBtn"><i class="fa-brands fa-google"></i> Sign In with Google</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
